@@ -44,11 +44,31 @@ void print_verbose_header() {
         auto s_name = dev_info->name();
         auto s_ver = dev_info->runtime_version().str();
 
-        printf("onednn_verbose,info,gpu,engine,%d,name:%s,"
+//<<<<<<< HEAD:src/gpu/intel/ocl/verbose.hpp
+
+        verbose_printf("onednn_verbose,info,gpu,engine,%d,name:%s,"
                "driver_version:%s,binary_kernels:%s\n",
                 (int)i, s_name.c_str(), s_ver.c_str(),
                 dev_info->mayiuse_ngen_kernels() ? "enabled" : "disabled");
-        eng_ptr->release();
+
+/*
+#if DNNL_GPU_VENDOR == DNNL_VENDOR_INTEL
+        auto *compute_engine
+                = utils::downcast<gpu::intel::compute::compute_engine_t *>(
+                        eng_ptr);
+        auto *dev_info = compute_engine->device_info();
+        verbose_printf(
+                "onednn_verbose,info,gpu,engine,%d,name:%s,driver_version:%s,"
+                "binary_kernels:%s\n",
+                (int)i, s_name.c_str(), s_ver.c_str(),
+                dev_info->mayiuse_ngen_kernels() ? "enabled" : "disabled");
+        return;
+#endif
+        verbose_printf(
+                "onednn_verbose,info,gpu,engine,%d,name:%s,driver_version:%s\n",
+                (int)i, s_name.c_str(), s_ver.c_str());
+//>>>>>>> 4015d0890f... common: verbose: update printf calls for verbose outputs:src/xpu/ocl/verbose.hpp
+*/      eng_ptr->release();
     }
 }
 
