@@ -191,7 +191,7 @@ option(DNNL_EXPERIMENTAL
     "Enables experimental features in oneDNN.
     When enabled, each experimental feature has to be individually selected
     using environment variables."
-    OFF) # disabled by default
+    ON) # disabled by default // Xiake:modify to turn on DNNL_EXPERIMENTAL_LOGGING
 
 option(DNNL_EXPERIMENTAL_SPARSE
     "Enable experimental functionality for sparse domain. This option works
@@ -211,7 +211,7 @@ option(DNNL_EXPERIMENTAL_PROFILING
 option(DNNL_EXPERIMENTAL_LOGGING
     "Enable experimental functionality for logging. This option works
     independently from DNNL_EXPERIMENTAL."
-    OFF) # disabled by default
+    ON) # disabled by default // Xiake:modify to turn on DNNL_EXPERIMENTAL_LOGGING
 
 option(ONEDNN_EXPERIMENTAL_GRAPH_COMPILER_BACKEND
     "builds oneDNN Graph API graph-compiler backend" OFF)
