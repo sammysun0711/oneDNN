@@ -15,7 +15,8 @@
 *******************************************************************************/
 
 #include <string>
-
+#include <fstream>
+#include <iostream>
 #include "c_types_map.hpp"
 #include "engine.hpp"
 
@@ -93,7 +94,11 @@ status_t primitive_execute(
     if (enable_itt)
         itt::primitive_task_start(primitive_iface->pd()->impl()->kind());
 #endif
-
+    std::ofstream log_file;
+    //std::cout << "Save onednn logs: D:\\Users\\xiake\\onednn_gpu_log.txt \n";
+    log_file.open("D:\\Users\\xiake\\onednn_gpu_log.txt", std::ios_base::app);
+    log_file << "onednn_verbose,v1,primitive,exec,"
+             << primitive_iface->pd()->info() << "\n";
     if (get_verbose(verbose_t::exec_profile,
                 prim_kind2_comp_kind(primitive_iface->pd()->impl()->kind()))) {
         stream->wait();
